@@ -8,11 +8,12 @@ def main(argv):
   # ---
   # This is a sample code to use arguments and outputs.
   # Edit and remove this code as you like.
-	conn = httplib.HTTPConnection("http://challenge-server.code-check.io", 80)
+	conn = httplib.HTTPConnection("challenge-server.code-check.io", 80)
 	# conn.request("GET", "/api/hash")
 	# conn.request("GET", "/api/hash?q=hoge")
 	for i, v in enumerate(argv):
+		# print v
 		conn.request("GET", "/api/hash?q="+v)
 		response = conn.getresponse()
-
-		print response.read()
+		answer = response.read().split('"')
+		print answer[7]
