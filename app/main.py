@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import httplib
+import json
 
 def main(argv):
   # このコードは引数と標準出力を用いたサンプルコードです。
@@ -15,5 +16,9 @@ def main(argv):
 		# print v
 		conn.request("GET", "/api/hash?q="+v)
 		response = conn.getresponse()
-		answer = response.read().split('"')
-		print answer[7]
+
+		js = json.loads(response.read())
+		print js['hash']
+
+		# answer = response.read().split('"')
+		# print answer[7]
